@@ -73,7 +73,7 @@ Backend: http://localhost:5000 (o el puerto configurado en Node.js).
 
 **Proyecto realizado por:**
 
-Yony Araujo
-Diego Briceño
-Leoferson Torres
+Yony Araujo |
+Diego Briceño |
+Leoferson Torres |
 Nicole Rangel
