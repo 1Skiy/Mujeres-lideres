@@ -1,0 +1,796 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  * body {
+    font-family: 'Open Sans';
+  }
+  
+  .contenedor {
+    padding: 60px 0;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .titulo {
+    color: #990c0c;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  /* Barra de navegación */
+  
+  nav {
+    display: flex;
+    justify-content: center; /* Centra el menú */
+    align-items: center;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    padding: 0 20px; /* Espaciado horizontal */
+  }
+  
+  nav ul {
+    list-style-type: none; /* Elimina las viñetas */
+    padding: 0; /* Elimina el padding de la lista */
+    margin: 0; /* Elimina el margen de la lista */
+    display: flex; /* Utiliza flexbox para mostrar los elementos en línea */
+  }
+  
+  nav a {
+    color: #fff; /* Texto blanco */
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 15px; /* Espaciado entre los enlaces */
+    font-family: 'Open Sans', sans-serif; /* Fuente definida */
+    padding: 8px 15px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  
+  nav a:hover {
+    background-color: #55c931; /* Fondo verde al hacer hover */
+    color: #fff; /* Mantiene el color blanco al hacer hover */
+    text-decoration: none;
+  }
+  
+  nav a:active {
+    background-color: #45a420; /* Color más oscuro al hacer clic */
+    transform: scale(0.95); /* Efecto de "presionar" */
+  }
+  
+  
+  nav input, nav label {
+    display: none; /* Oculta el checkbox */
+  }
+  
+  /* Estilos para pantallas de hasta 1024px (tablets y dispositivos móviles grandes) */
+  @media screen and (max-width: 1024px) {
+    nav a {
+        font-size: 17px; /* Reduce ligeramente el tamaño del texto */
+        margin: 0 10px; /* Menos espacio entre los enlaces */
+    }
+  }
+  
+  /* Estilos para pantallas de hasta 768px (tablets verticales) */
+  @media screen and (max-width: 768px) {
+    nav a {
+        font-size: 15px;
+        margin: 0 5px;
+    }
+  }
+  
+  /* Estilos para pantallas de hasta 630px (dispositivos móviles pequeños) */
+  @media screen and (max-width: 630px) {
+    nav {
+        flex-direction: column; /* Coloca los enlaces en una columna */
+        height: auto; /* Ajusta la altura automática */
+        width: 100%;
+        padding: 10px; /* Espaciado alrededor del menú */
+        position: absolute;
+    }
+  
+    nav input {
+        display: none; /* Oculta el checkbox */
+    }
+  
+    nav label {
+        box-sizing: border-box;
+        display: inline-block;
+        background: #55c931; /* Fondo verde */
+        border-radius: 5px; /* Bordes redondeados para el icono */
+        width: 40px; /* Aumento del tamaño del icono */
+        height: 40px; /* Aumento del tamaño del icono */
+        line-height: 40px; /* Alineación vertical */
+        font-weight: bold;
+        text-align: center;
+        transition: background 0.3s ease; /* Transición suave para el fondo */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+    }
+  
+    nav ul {
+        display: block; 
+        margin-top: 10px; /* Espacio entre el botón y el menú */
+        padding: 0;
+        width: 100%; /* Ancho completo */
+        overflow: hidden; /* Oculta el desbordamiento */
+        max-height: 0; /* Altura máxima inicial para animación */
+        opacity: 0; /* Inicialmente invisible */
+        transition: max-height 0.5s ease, opacity 0.5s ease; /* Transiciones para la altura y la opacidad */
+    }
+  
+    nav input:checked ~ ul {
+        max-height: 300px; /* Altura máxima al abrir, ajusta según contenido */
+        opacity: 1; /* Hacer visible el menú */
+    }
+  
+    nav li {
+        display: block;
+        margin: 0;
+        padding: 12px; /* Aumento del padding para mayor comodidad */
+        list-style: none;
+        border-bottom: 1px solid #ccc; /* Línea divisoria más sutil */
+        text-align: center; /* Centra el texto */
+        transition: background 0.3s ease; /* Transición suave para el fondo */
+    }
+  
+    /* Estilo cuando el mouse pasa encima de cada link del menú */
+    nav li:hover {
+        background: #55c931; /* Fondo más claro al pasar el mouse */
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+    }
+  
+    nav li:active {
+        background-color: #45a420; /* Color más oscuro al hacer clic */
+        transform: scale(0.99); /* Efecto de "presionar" */
+    }
+    
+    nav label {
+        display: inline-block; /* Muestra el icono del menú hamburguesa */
+    }
+  }
+  
+  /* Contenedor del Header */
+  
+  header .contenedor-header {
+    display: flex;
+    height: 430px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  
+  header {
+    height: 620px;
+    background: linear-gradient(to right, hsla(113, 89%, 72%, 0.350), hsla(96, 40%, 43%, 0.7)), url(./titulo.webp);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Efecto Parallax para el fondo */
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+    background-attachment: fixed;
+    filter: brightness(0.7); /* Oscurece la imagen para mayor contraste con el texto */
+  }
+  
+  /* Estilos del título principal */
+  .contenedor-header h1 {
+    font-size: 45px;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra en el texto para mejor visibilidad */
+    animation: fadeIn 1.5s ease-in-out; /* Animación suave */
+    letter-spacing: 2px; /* Espaciado entre letras */
+  }
+  
+  /* Estilos del subtítulo */
+  .contenedor-header h2 {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    color: #990C0C;
+    text-decoration: underline;
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in-out; /* Animación más lenta que el título */
+  }
+  
+  /* Animación de aparición suave */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  /* Dispositivos móviles pequeños */
+  @media screen and (max-width: 768px) {
+  
+    header .contenedor-header {
+        display: flex;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+    }
+  
+    header {
+        height: 400px;
+        background-size: contain; /* Ajusta el tamaño para que se vea completa */
+        background-position: center;
+        background-attachment: scroll; /* Parallax desactivado en móviles */
+    }
+  
+    .contenedor-header h1 {
+        font-size: 30px;
+    }
+  
+    .contenedor-header h2 {
+        font-size: 24px;
+    }
+  }
+  
+  /* Dispositivos muy pequeños */
+  @media screen and (max-width: 630px) {
+  
+    header .contenedor-header {
+        display: flex;
+        height: 410px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+    }
+  
+    header {
+        height: 370px; /* Menor altura para pantallas muy pequeñas */
+        background-size: cover; /* Se adapta mejor en móviles */
+        background-position: center;
+        background-attachment: scroll; /* Parallax desactivado */
+    }
+  
+    .contenedor-header h1 {
+        font-size: 26px;
+    }
+  
+    .contenedor-header h2 {
+        font-size: 22px;
+    }
+  }
+  
+  /* Acerca de nosotras */
+  
+  .contenido-acerca-de {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .contenido-individual-acerca-de {
+    width: 45%; /* Ajuste de tamaño para pantallas grandes */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #e6c0c0; /* Fondo verde claro */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.377); /* Sombra para el contenedor */
+  }
+  
+  .contenido-individual-acerca-de:hover {
+    transform: translateY(-10px); /* Elevación al hacer hover */
+  }
+  
+  .imagen-container {
+    width: 100%;
+    height: 280px; /* Ajuste de altura según preferencias */
+    position: relative;
+    background-color: rgba(229, 8, 8, 0.692); /* Fondo verde con transparencia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-blend-mode: overlay;
+  }
+  
+  .imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    filter: brightness(60%);
+  }
+  
+  .texto-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Estilos del título principal (Misión o Visión) */
+  .texto-container h3 {
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Estilos del párrafo descriptivo */
+  .texto-container p {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0;
+    padding: 0 15px;
+    background: rgba(138, 190, 54, 0.1); /* Color verde con 50% de opacidad */
+    color: white;
+    transition: opacity 0.5s ease;
+    line-height: 1.8;
+    display: inline-block; /* Para que el padding funcione correctamente */
+  }
+  
+  /* Al pasar el mouse, el título se oculta y el párrafo aparece */
+  .contenido-individual-acerca-de:hover .texto-container h3 {
+    opacity: 0;
+  }
+  
+  .contenido-individual-acerca-de:hover .texto-container p {
+    opacity: 1;
+  }
+  
+  /* Responsividad para pantallas más pequeñas */
+  @media screen and (max-width: 768px) {
+    .contenido-individual-acerca-de {
+        width: 100%; /* Ancho completo en móviles */
+    }
+    
+    .imagen-container {
+        height: 200px; /* Ajuste de altura para pantallas más pequeñas */
+    }
+  
+    /* Estilos del párrafo descriptivo */
+    .texto-container p {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    }
+  }
+  
+  /* Responsividad para pantallas aun más pequeñas */
+  @media screen and (max-width: 530px) {
+    .contenido-individual-acerca-de {
+        width: 100%; /* Ancho completo en móviles */
+    }
+    
+    .imagen-container {
+        height: 200px; /* Ajuste de altura para pantallas más pequeñas */
+    }
+  
+      /* Estilos del párrafo descriptivo */
+      .texto-container p {
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        line-height: 1.5;
+    }
+  }
+  
+  /* Sección de mujeres */
+  
+  .contenedor-mujeres {
+    padding: 30px 0;
+    background-color: #f5f5f5;
+  }
+  
+  /* Cartas de las mujeres */
+  .cartas-mujeres {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permitir flex-wrap para adaptarse mejor en pantallas medianas y pequeñas */
+    gap: 15px;
+  }
+  
+  /* Estilos individuales de las cartas */
+  .carta-individual {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-basis: 30%; /* Las tarjetas ocuparán el 30% del ancho en pantallas grandes */
+  }
+  
+  .carta-individual:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo de las imágenes redondas con borde verde */
+  .carta-individual img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #55c931; /* Borde verde solo para la imagen */
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para los nombres de las mujeres */
+  .carta-individual h4 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  /* Estilo de las citas tipo referencia */
+  .carta-individual p {
+    font-style: italic;
+    font-size: 16px;
+    color: #555;
+    position: relative;
+    margin: 10px 0;
+  }
+  
+  /* Agregar comillas antes y después de la cita */
+  .carta-individual p:before, .carta-individual p:after {
+    content: '"';
+    color: #55c931; /* Color verde para las comillas */
+    font-size: 24px;
+  }
+  
+  /* Responsivo: para pantallas pequeñas (menos de 768px), las cartas ocupan el 100% del ancho */
+  @media screen and (max-width: 768px) {
+    .cartas-mujeres {
+        flex-direction: column;
+        padding: 20px;
+    }
+  
+    .carta-individual {
+        flex-basis: 100%; /* 100% del ancho en pantallas pequeñas */
+    }
+  }
+  
+  
+  /* Estilos generales para el contenedor Noticias y el Carrusel */
+  .section {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para el carrusel */
+  .carrusel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .noticia {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    flex-direction: row; /* Mantener el layout en fila para pantallas grandes */
+  }
+  
+  .imagen-noticia {
+    height: 100%;
+    max-height: 400px; /* Ajusta según el tamaño deseado */
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+  }
+  
+  .info-noticia {
+    width: 35%;
+    text-align: left;
+    padding: 30px;
+  }
+  
+  .info-noticia h3 {
+    font-size: 1.6rem;
+    color: #1d555b;
+    margin-bottom: 15px;
+  }
+  
+  .info-noticia p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .boton-noticias {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .boton-noticias button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .boton-noticias button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* Responsivo para pantallas pequeñas */
+  @media screen and (max-width: 768px) {
+    .carrusel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    
+    .noticia {
+        flex: 0 0 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        position: relative;
+        flex-direction: column;
+    }
+  
+    .imagen-noticia {
+        width: 80%; /* Imagen ocupa todo el ancho */
+        max-height: 240px; /* Reducir aún más el tamaño de la imagen */
+        margin-bottom: 10px;
+    }
+    
+    .info-noticia {
+        width: 65%;
+        text-align: center;
+        padding: 20px;
+    }
+  
+    .info-noticia h3 {
+        font-size: 1.4rem; /* Reducir tamaño del título */
+        
+    }
+  
+    .info-noticia p {
+        font-size: 0.9rem; /* Reducir tamaño del texto */
+        margin-right: none;
+    }
+  }
+  
+  
+  
+  /* Estilos para el formulario */
+  
+  .formulario {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px; /* Espacio adicional alrededor del formulario */
+    background-color: #f5f5f5; /* Fondo ligero para contrastar */
+  }
+  
+  .contenedor-formulario {
+    display: flex;
+    width: 90%;
+    border-radius: 12px; /* Bordes redondeados */
+    overflow: hidden; /* Para que los bordes no se salgan */
+  }
+  
+  .registro-invitacion {
+    flex: 1; /* Ocupa un lado del contenedor */
+    background-color: #1d555b; /* Color de fondo atractivo */
+    color: #ffffff; /* Texto blanco para contraste */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar el contenido verticalmente */
+    text-align: center; /* Centrar texto horizontalmente */
+  }
+  
+  .registro-invitacion h2 {
+    font-size: 24px;
+    margin-bottom: 15px; /* Espacio debajo del título */
+  }
+  
+  .registro-invitacion p {
+    font-size: 16px;
+    line-height: 1.5; /* Mejorar legibilidad */
+  }
+  
+  .formulario-datos {
+    flex: 2; /* Ocupa el otro lado del contenedor */
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    padding: 30px;
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px; /* Espacio superior */
+    font-weight: bold;
+    font-size: 16px; /* Tamaño de fuente más grande */
+  }
+  
+  input, textarea {
+    width: 95%;
+    padding: 12px; /* Mayor espacio interior */
+    margin-top: 5px;
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 6px; /* Bordes ligeramente redondeados */
+    font-size: 14px; /* Tamaño de fuente cómodo */
+    transition: border-color 0.3s ease; /* Transición para el borde */
+  }
+  
+  input:focus, textarea:focus {
+    border-color: #007bff; /* Cambiar borde al enfocar */
+    outline: none; /* Sin contorno predeterminado */
+  }
+  
+  textarea {
+    resize: vertical; /* Permitir redimensionar verticalmente */
+  }
+  
+  .botones {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Espacio entre botones */
+  }
+  
+  button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff; /* Color del botón */
+    color: white;
+    cursor: pointer;
+    font-size: 16px; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease; /* Transición para el fondo */
+  }
+  
+  button[type="reset"] {
+    background-color: #dc3545; /* Color para el botón de reset */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+  }
+  
+  button[type="reset"]:hover {
+    background-color: #c82333; /* Color más oscuro al pasar el mouse */
+  }
+  
+  /* Responsivo para pantallas pequeñas */
+  @media screen and (max-width: 768px) {
+    .registro-invitacion {
+        display: none;
+    }
+  
+      button {
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #007bff; /* Color del botón */
+        color: white;
+        cursor: pointer;
+        font-size: 16px; /* Tamaño de fuente más grande */
+        transition: background-color 0.3s ease; /* Transición para el fondo */
+      }
+  }
+  
+  /* Pie de pagina */
+  
+  footer {
+    background: #1d555b;
+    padding: 60px 0 30px;
+    margin: auto;
+    overflow: hidden;
+    color: #fff; /* Color de texto general para mejor legibilidad */
+    border-bottom: 15px solid #003C44;
+  }
+  
+  .contenedor-footer {
+    display: flex;  /* Usamos flexbox para colocar elementos en fila */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en múltiples filas */
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #ccc;
+    align-items: center; /* Centramos verticalmente los elementos */
+  }
+  
+  .contenido-footer {
+    text-align: center;
+    flex: 1; /* Permite que los elementos crezcan de manera uniforme */
+    min-width: 150px; /* Tamaño mínimo para que no se reduzcan demasiado en pantallas pequeñas */
+  }
+  
+  .contenido-footer h4 {
+    color: #88C426;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    border: none;
+  }
+  
+  .contenido-footer p {
+    color: #faf9f9; /* Color de texto claro para mejor contraste */
+    padding-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .contacto {
+    text-align: center;
+    font-size: 1.5rem; /* Tamaño de fuente más grande y accesible */
+    margin: 20px 0 0;
+    color: #88C426;
+  }
+  
+  .redes-sociales {
+    font-size: 2rem; /* Tamaño de los íconos */
+    text-align: center;
+    padding: 10px;
+    color: #faf9f9; /* Color de los íconos */
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out; /* Agrega una animación de transformación */
+  }
+  
+  .redes-sociales:hover {
+    transform: scale(1.2); /* Hace que los íconos se agranden al pasar el mouse */
+  }
+  
+  /* Media Queries para Responsividad */
+  @media (max-width: 768px) {
+    .contenedor-footer {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center; /* Centra los elementos horizontalmente */
+    }
+  
+    .contenido-footer {
+        margin-bottom: 20px; /* Espacio entre los elementos */
+    }
+  
+    .contacto {
+        font-size: 1.2rem; /* Ajusta el tamaño de la fuente en pantallas pequeñas */
+    }
+  }
+  
